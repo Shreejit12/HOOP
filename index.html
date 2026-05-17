@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>HoopsStat Pro</title>
+    
+    <!-- iOS Native PWA Configuration -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="HoopsStat">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { 
+            background-color: #0b0f19; 
+            color: #f3f4f6; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .court-bg { 
+            background: linear-gradient(rgba(11, 15, 25, 0.93), rgba(11, 15, 25, 0.97)), url('https://www.transparenttextures.com/patterns/wood-pattern.png'); 
+        }
+        .jersey-badge { 
+            border-radius: 50%; 
+            width: 28px; 
+            height: 28px; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            font-size: 14px; 
+            color: black;
+        }
+        .safe-top { padding-top: max(1rem, env(safe-area-inset-top)); }
+        .safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+    </style>
+</head>
+<body class="court-bg min-h-screen flex flex-col justify-between">
+
+    <!-- SECURITY SCREEN -->
+    <div id="lock-screen" class="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-center p-6 text-center">
+        <div class="w-full max-w-sm space-y-6">
+            <div class="text-orange-500 font-black text-4xl tracking-wider italic">HOOPS STAT PRO</div>
+            <p class="text-gray-400 text-sm">Introduza o código de acesso</p>
+            <input type="password" id="security-code" placeholder="CÓDIGO" 
+                   class="w-full bg-slate-900 border border-slate-700 rounded-2xl p-4 text-center text-2xl font-bold tracking-widest text-white uppercase focus:outline-none focus:border-orange-500">
+            <button onclick="checkAccess()" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-black py-4 rounded-2xl transition duration-200 shadow-lg shadow-orange-600/20">
+                ENTRAR
+            </button>
+            <p id="error-msg" class="text-red-500 text-sm font-semibold hidden">Código Incorreto. Acesso Negado.</p>
+        </div>
+    </div>
+
+    <!-- MAIN APP APP CONTENT -->
+    <div id="main-content" class="hidden flex flex-col flex-1">
+        
+        <!-- Header -->
+        <div class="safe-top bg-slate-900/90 p-4 flex justify-between items-center border-b border-slate-800 shadow-md backdrop-blur-md">
+            <h1 class="text-lg font-black italic tracking-wide text-orange-500">HOOPS STAT</h1>
+            <div class="flex gap-2">
+                <button onclick="backupData()" class="bg-emerald-600 active:scale-95 px-3 py-2 rounded-xl text-xs font-bold transition">COPIAR DADOS</button>
+                <button onclick="clearAll()" class="bg-rose-700 active:scale-95 px-3 py-2 rounded-xl text-xs font-bold transition">RESET</button>
+            </div>
+        </div>
+
+        <!-- LIVE SCOREBOARD (TOTALS) -->
+        <div class="p-4 bg-slate-950/80 border-b border-slate-800 grid grid-cols-2 gap-4 text-center">
+            <!-- Casa Totals -->
+            <div class="bg-blue-950/30 border border-blue-900/50 rounded-2xl p-3">
+                <h4 class="text-xs font-black text-blue-400 tracking-wider mb-2">TOTAIS CASA</h4>
+                <div class="grid grid-cols-4 gap-1 text-xs">
+                    <div><p class="text-gray-500 font-bold">FLT</p><p id="total-home-falta" class="text-lg font-black text-white">0</p></div>
+                    <div><p class="text-gray-500 font-bold">ABF</p><p id="total-home-abafos" class="text-lg font-black text-white">0</p></div>
+                    <div><p class="text-gray-500 font-bold">R.O</p><p id="total-home-ro" class="text-lg font-black text-white">0</p></div>
+                    <div><p class="text-gray-500 font-bold">R.D</p><p id="total-home-rd" class="text-lg font-black text-white">0</p></div>
+                </div>
+            </div>
+            <!-- Fora Totals -->
+            <div class="bg-amber-950/20 border border-amber-900/30 rounded-2xl p-3">
+                <h4 class="text-xs font-black text-amber-400 tracking-wider mb-2">TOTAIS FORA</h4>
+                <div class="grid grid-cols-4 gap-1 text-xs">
+                    <div><p class="text-gray-500 font-bold">FLT</p><p id="total-away-falta" class="text-lg font-black text-white">0</p></div>
+                    <div><p class="text-gray-500 font-bold">ABF</p><p id="total-away-abafos" class="text-lg font-black text-white">0</p></div>
+                    <div><p class="text-gray-500 font-bold">R.O</p><p id="total-away-ro" class="text-lg font-black text-white">0</p></div>
+                    <div><p class="text-gray-500 font-bold">R.D</p><p id="total-away-rd" class="text-lg font-black text-white">0</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quarters Navigation -->
+        <div class="grid grid-cols-4 gap-2 bg-black/40 p-3 border-b border-slate-900">
+            <button onclick="setQ(1)" id="q1" class="py-2 rounded-xl bg-orange-500 font-black text-black transition">Q1</button>
+            <button onclick="setQ(2)" id="q2" class="py-2 rounded-xl bg-slate-800 font-black transition text-gray-400">Q2</button>
+            <button onclick="setQ(3)" id="q3" class="py-2 rounded-xl bg-slate-800 font-black transition text-gray-400">Q3</button>
+            <button onclick="setQ(4)" id="q4" class="py-2 rounded-xl bg-slate-800 font-black transition text-gray-400">Q4</button>
+        </div>
+
+        <!-- Action Logging Grid -->
+        <div class="grid grid-cols-2 gap-4 p-4 flex-1 items-start">
+            <!-- Equipa Casa -->
+            <div class="space-y-3">
+                <h2 class="text-center font-black tracking-wider text-blue-400 text-xs uppercase">CASA</h2>
+                <button onclick="openKeypad('Home', 'FALTA')" class="active:scale-95 w-full py-5 bg-rose-950/30 border-2 border-rose-600/70 rounded-2xl font-black text-rose-200 shadow-md">FALTA</button>
+                <button onclick="openKeypad('Home', 'ABAFOS')" class="active:scale-95 w-full py-5 bg-blue-950/30 border-2 border-blue-500/70 rounded-2xl font-black text-blue-200">ABAFOS</button>
+                <button onclick="openKeypad('Home', 'RESALTO OFENSIVO')" class="active:scale-95 w-full py-5 bg-blue-950/30 border-2 border-blue-500/70 rounded-2xl font-black text-blue-200 text-xs">RESALTO OF.</button>
+                <button onclick="openKeypad('Home', 'RESALTO DEFENSIVO')" class="active:scale-95 w-full py-5 bg-blue-950/30 border-2 border-blue-500/70 rounded-2xl font-black text-blue-200 text-xs">RESALTO DEF.</button>
+            </div>
+
+            <!-- Equipa Fora -->
+            <div class="space-y-3">
+                <h2 class="text-center font-black tracking-wider text-amber-400 text-xs uppercase">FORA</h2>
+                <button onclick="openKeypad('Away', 'FALTA')" class="active:scale-95 w-full py-5 bg-rose-950/30 border-2 border-rose-600/70 rounded-2xl font-black text-rose-200 shadow-md">FALTA</button>
+                <button onclick="openKeypad('Away', 'ABAFOS')" class="active:scale-95 w-full py-5 bg-slate-800/60 border-2 border-slate-600 rounded-2xl font-black text-slate-300">ABAFOS</button>
+                <button onclick="openKeypad('Away', 'RESALTO OFENSIVO')" class="active:scale-95 w-full py-5 bg-slate-800/60 border-2 border-slate-600 rounded-2xl font-black text-slate-300 text-xs">RESALTO OF.</button>
+                <button onclick="openKeypad('Away', 'RESALTO DEFENSIVO')" class="active:scale-95 w-full py-5 bg-slate-800/60 border-2 border-slate-600 rounded-2xl font-black text-slate-300 text-xs">RESALTO DEF.</button>
+            </div>
+        </div>
+
+        <!-- History Log Stream -->
+        <div class="p-4 bg-slate-900/95 border-t border-slate-800 rounded-t-3xl shadow-2xl">
+            <h3 class="font-black text-orange-500 text-xs tracking-wider uppercase mb-3 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span> HISTÓRICO DE JOGO
+            </h3>
+            <div id="log-list" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
+        </div>
+    </div>
+
+    <!-- TACTICAL NUMERIC KEYPAD -->
+    <div id="keypad-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-end justify-center hidden">
+        <div class="w-full max-w-md bg-slate-900 rounded-t-3xl p-6 space-y-4 safe-bottom border-t border-slate-700">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <div>
+                    <span id="modal-team-tag" class="text-xs font-bold uppercase px-2 py-0.5 rounded mr-2"></span>
+                    <span id="modal-stat-type" class="font-black text-lg text-white"></span>
+                </div>
+                <div class="text-2xl font-black bg-slate-950 px-4 py-1 rounded-xl text-orange-500 min-w-[60px] text-center" id="jersey-display">-</div>
+            </div>
+
+            <!-- Virtual Layout Keys -->
+            <div class="grid grid-cols-3 gap-3">
+                <button onclick="pressKey('1')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-2xl py-4 rounded-xl shadow-md">1</button>
+                <button onclick="pressKey('2')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-2xl py-4 rounded-xl shadow-md">2</button>
+                <button onclick="pressKey('3')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-2xl py-4 rounded-xl shadow-md">3</button>
+                <button onclick="pressKey('4')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-2xl py-4 rounded-xl shadow-md">4</button>
+                <button onclick="pressKey('5')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-2xl py-4 rounded-xl shadow-md">5</button>
+                <button onclick="pressKey('6')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-2xl py-4 rounded-xl shadow-md">6</button>
+                <button onclick="pressKey('7')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-2xl py-4 rounded-xl shadow-md">7</button>
+                <button onclick="pressKey('8')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-2xl py-4 rounded-xl shadow-md">8</button>
+                <button onclick="pressKey('9')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-2xl py-4 rounded-xl shadow-md">9</button>
+                <button onclick="pressKey('CLEAR')" class="bg-rose-950 text-rose-300 font-bold text-lg py-4 rounded-xl uppercase">Limpar</button>
+                <button onclick="pressKey('0')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-2xl py-4 rounded-xl shadow-md">0</button>
+                <button onclick="closeKeypad()" class="bg-slate-700 text-slate-200 font-bold text-lg py-4 rounded-xl uppercase">Sair</button>
+            </div>
+
+            <button onclick="confirmStat()" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-black py-4 rounded-xl text-lg uppercase tracking-wide shadow-lg">
+                CONFIRMAR REGISTO
+            </button>
+        </div>
+    </div>
+
+    <!-- SCRIPT APPLICATION AUDIO ENGINE -->
+    <script>
+        let stats = JSON.parse(localStorage.getItem('hoops_data_v2')) || [];
+        let currentQ = 1;
+        
+        let activeTeam = '';
+        let activeType = '';
+        let currentJersey = '';
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'access') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(300, now);
+                osc.frequency.exponentialRampToValueAtTime(1200, now + 0.4);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.linearRampToValueAtTime(0, now + 0.4);
+                osc.start(now);
+                osc.stop(now + 0.4);
+            } else if (type === 'whistle') {
+                const osc2 = audioCtx.createOscillator();
+                const gain2 = audioCtx.createGain();
+                osc2.connect(gain2);
+                gain2.connect(audioCtx.destination);
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(1100, now);
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(1140, now);
+
+                gain.gain.setValueAtTime(0.08, now);
+                gain.gain.linearRampToValueAtTime(0, now + 0.25);
+                gain2.gain.setValueAtTime(0.08, now);
+                gain2.gain.linearRampToValueAtTime(0, now + 0.25);
+
+                osc.start(now);
+                osc2.start(now);
+                osc.stop(now + 0.25);
+                osc2.stop(now + 0.25);
+            } else if (type === 'delete') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.linearRampToValueAtTime(100, now + 0.15);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.linearRampToValueAtTime(0, now + 0.15);
+                osc.start(now);
+                osc.stop(now + 0.15);
+            } else if (type === 'tap') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(750, now);
+                gain.gain.setValueAtTime(0.06, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+                osc.start(now);
+                osc.stop(now + 0.04);
+            }
+        }
+
+        // English TTS Confirmation Voice (No tactical/soldier titles)
+        function speakAccessGranted() {
+            if ('speechSynthesis' in window) {
+                const text = "Access granted. Welcome, Shreejit.";
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.95;
+                utterance.pitch = 1.0;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Password Unlock
+        function checkAccess() {
+            const inputCode = document.getElementById('security-code').value.trim();
+            if (inputCode.toUpperCase() === 'SHREEJIT') {
+                document.getElementById('lock-screen').classList.add('hidden');
+                document.getElementById('main-content').classList.remove('hidden');
+                playSound('access');
+                setTimeout(speakAccessGranted, 300);
+                render();
+            } else {
+                const errMsg = document.getElementById('error-msg');
+                errMsg.classList.remove('hidden');
+                if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+            }
+        }
+
+        function setQ(q) {
+            currentQ = q;
+            document.querySelectorAll('[id^="q"]').forEach(btn => {
+                btn.classList.remove('bg-orange-500', 'text-black');
+                btn.classList.add('bg-slate-800', 'text-gray-400');
+            });
+            const activeBtn = document.getElementById('q' + q);
+            activeBtn.classList.remove('bg-slate-800', 'text-gray-400');
+            activeBtn.classList.add('bg-orange-500', 'text-black');
+            playSound('whistle');
+        }
+
+        // Modal Controls
+        function openKeypad(team, type) {
+            activeTeam = team;
+            activeType = type;
+            currentJersey = '';
+            
+            const tag = document.getElementById('modal-team-tag');
+            tag.innerText = team === 'Home' ? 'Casa' : 'Fora';
+            tag.className = team === 'Home' ? 'text-xs font-bold uppercase px-2 py-0.5 rounded mr-2 bg-blue-600 text-white' : 'text-xs font-bold uppercase px-2 py-0.5 rounded mr-2 bg-amber-500 text-black';
+            
+            document.getElementById('modal-stat-type').innerText = type;
+            document.getElementById('jersey-display').innerText = '-';
+            document.getElementById('keypad-modal').classList.remove('hidden');
+        }
+
+        function closeKeypad() {
+            document.getElementById('keypad-modal').classList.add('hidden');
+        }
+
+        function pressKey(key) {
+            playSound('tap'); // Clean input feedback sound
+            if (key === 'CLEAR') {
+                currentJersey = '';
+            } else {
+                if (currentJersey.length < 3) {
+                    currentJersey += key;
+                }
+            }
+            document.getElementById('jersey-display').innerText = currentJersey || '-';
+        }
+
+        function confirmStat() {
+            const finalJersey = currentJersey || '00';
+            
+            const entry = {
+                id: Date.now(),
+                q: currentQ,
+                team: activeTeam,
+                type: activeType,
+                player: finalJersey
+            };
+
+            stats.unshift(entry);
+            save();
+            render();
+            closeKeypad();
+            playSound('whistle');
+        }
+
+        function deleteItem(id) {
+            stats = stats.filter(s => s.id !== id);
+            save();
+            render();
+            playSound('delete');
+        }
+
+        function save() {
+            localStorage.setItem('hoops_data_v2', JSON.stringify(stats));
+        }
+
+        function clearAll() {
+            if (confirm("Tem a certeza que deseja limpar todas as estatísticas desta sessão?")) {
+                stats = [];
+                save();
+                render();
+            }
+        }
+
+        function backupData() {
+            const dataStr = JSON.stringify(stats, null, 2);
+            navigator.clipboard.writeText(dataStr).then(() => {
+                alert("Dados copiados para a área de transferência!");
+            }).catch(err => {
+                alert("Erro ao copiar dados.");
+            });
+        }
+
+        // Live Calculations & Scoreboard Rendering Engine
+        function render() {
+            // 1. Calculate Totals Counters dynamically
+            const counts = {
+                Home: { 'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0 },
+                Away: { 'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0 }
+            };
+
+            stats.forEach(s => {
+                if (counts[s.team] && counts[s.team][s.type] !== undefined) {
+                    counts[s.team][s.type]++;
+                }
+            });
+
+            // Update UI Scoreboard Elements
+            document.getElementById('total-home-falta').innerText = counts.Home['FALTA'];
+            document.getElementById('total-home-abafos').innerText = counts.Home['ABAFOS'];
+            document.getElementById('total-home-ro').innerText = counts.Home['RESALTO OFENSIVO'];
+            document.getElementById('total-home-rd').innerText = counts.Home['RESALTO DEFENSIVO'];
+
+            document.getElementById('total-away-falta').innerText = counts.Away['FALTA'];
+            document.getElementById('total-away-abafos').innerText = counts.Away['ABAFOS'];
+            document.getElementById('total-away-ro').innerText = counts.Away['RESALTO OFENSIVO'];
+            document.getElementById('total-away-rd').innerText = counts.Away['RESALTO DEFENSIVO'];
+
+            // 2. Render History Stream
+            const list = document.getElementById('log-list');
+            if (stats.length === 0) {
+                list.innerHTML = `<p class="text-center text-gray-600 py-6 text-xs italic">Nenhum registo efetuado até ao momento.</p>`;
+                return;
+            }
+
+            list.innerHTML = stats.map(s => `
+                <div class="flex items-center justify-between bg-slate-950/60 p-3 rounded-xl border-l-4 ${s.team === 'Home' ? 'border-blue-500' : 'border-amber-500'}">
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-bold text-gray-500 bg-slate-900 px-1.5 py-0.5 rounded">Q${s.q}</span>
+                        <span class="jersey-badge" style="background:${s.team === 'Home' ? '#60a5fa' : '#f59e0b'}">${s.player}</span>
+                        <span class="font-black text-sm tracking-wide text-gray-200">${s.type}</span>
+                    </div>
+                    <button onclick="deleteItem(${s.id})" class="text-rose-500 hover:text-rose-400 font-bold px-3 py-1 text-lg active:scale-90 transition">✕</button>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
