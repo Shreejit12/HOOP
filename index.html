@@ -66,11 +66,11 @@
             </div>
         </div>
 
-        <!-- 4-METRIC GLOBAL SCOREBOARD -->
+        <!-- 4-METRIC GLOBAL SCOREBOARD (GAME TOTALS) -->
         <div class="p-3 bg-slate-950/80 border-b border-slate-800 grid grid-cols-2 gap-3 text-center">
             <!-- Casa Totals -->
             <div class="bg-blue-950/20 border border-blue-900/50 rounded-xl p-2">
-                <h4 class="text-[10px] font-black text-blue-400 tracking-wider mb-1">CASA</h4>
+                <h4 class="text-[10px] font-black text-blue-400 tracking-wider mb-1">TOTAIS GAME CASA</h4>
                 <div class="grid grid-cols-4 gap-0.5">
                     <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">FAL</p><p id="total-home-falta" class="text-sm font-black text-white">0</p></div>
                     <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">ABA</p><p id="total-home-abafos" class="text-sm font-black text-white">0</p></div>
@@ -80,7 +80,7 @@
             </div>
             <!-- Fora Totals -->
             <div class="bg-amber-950/20 border border-amber-900/40 rounded-xl p-2">
-                <h4 class="text-[10px] font-black text-amber-400 tracking-wider mb-1">FORA</h4>
+                <h4 class="text-[10px] font-black text-amber-400 tracking-wider mb-1">TOTAIS GAME FORA</h4>
                 <div class="grid grid-cols-4 gap-0.5">
                     <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">FAL</p><p id="total-away-falta" class="text-sm font-black text-white">0</p></div>
                     <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">ABA</p><p id="total-away-abafos" class="text-sm font-black text-white">0</p></div>
@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        <!-- Quarters -->
+        <!-- Quarters Navigation Selector -->
         <div class="grid grid-cols-4 gap-1.5 bg-black/40 p-2.5 border-b border-slate-900">
             <button onclick="setQ(1)" id="q1" class="py-1.5 rounded-xl bg-orange-500 font-black text-black text-xs">Q1</button>
             <button onclick="setQ(2)" id="q2" class="py-1.5 rounded-xl bg-slate-800 font-black text-gray-400 text-xs">Q2</button>
@@ -119,22 +119,55 @@
             </div>
         </div>
 
+        <!-- NEW: SEPARATE TOTALS FOR EACH QUARTER (Q1, Q2, Q3, Q4) -->
+        <div class="mx-3 my-1 p-2 bg-slate-900/90 border border-slate-800 rounded-xl space-y-1">
+            <h3 class="font-black text-orange-400 text-[9px] tracking-wider uppercase text-center border-b border-slate-800 pb-0.5">
+                ⏱️ SEPARATE QUARTER TOTALS (CASA / FORA)
+            </h3>
+            <div class="grid grid-cols-4 gap-1 text-[10px]">
+                <!-- Q1 Box -->
+                <div class="bg-slate-950 p-1.5 rounded border border-slate-800 text-center">
+                    <p class="font-black text-orange-500 border-b border-slate-800 mb-1 text-[9px]">QUARTER 1</p>
+                    <p class="text-blue-400 font-bold">C: <span id="q1-home-total" class="text-white">0</span></p>
+                    <p class="text-amber-400 font-bold">F: <span id="q1-away-total" class="text-white">0</span></p>
+                </div>
+                <!-- Q2 Box -->
+                <div class="bg-slate-950 p-1.5 rounded border border-slate-800 text-center">
+                    <p class="font-black text-orange-500 border-b border-slate-800 mb-1 text-[9px]">QUARTER 2</p>
+                    <p class="text-blue-400 font-bold">C: <span id="q2-home-total" class="text-white">0</span></p>
+                    <p class="text-amber-400 font-bold">F: <span id="q2-away-total" class="text-white">0</span></p>
+                </div>
+                <!-- Q3 Box -->
+                <div class="bg-slate-950 p-1.5 rounded border border-slate-800 text-center">
+                    <p class="font-black text-orange-500 border-b border-slate-800 mb-1 text-[9px]">QUARTER 3</p>
+                    <p class="text-blue-400 font-bold">C: <span id="q3-home-total" class="text-white">0</span></p>
+                    <p class="text-amber-400 font-bold">F: <span id="q3-away-total" class="text-white">0</span></p>
+                </div>
+                <!-- Q4 Box -->
+                <div class="bg-slate-950 p-1.5 rounded border border-slate-800 text-center">
+                    <p class="font-black text-orange-500 border-b border-slate-800 mb-1 text-[9px]">QUARTER 4</p>
+                    <p class="text-blue-400 font-bold">C: <span id="q4-home-total" class="text-white">0</span></p>
+                    <p class="text-amber-400 font-bold">F: <span id="q4-away-total" class="text-white">0</span></p>
+                </div>
+            </div>
+        </div>
+
         <!-- DEDICATED INDIVIDUAL ATHLETE TOTALS BOARD -->
-        <div class="mx-3 my-1 p-3 bg-slate-900/70 border border-slate-800 rounded-2xl flex-1 flex flex-col min-h-[140px]">
-            <h3 class="font-black text-white text-[10px] tracking-wider uppercase mb-2 text-center border-b border-slate-800 pb-1 flex items-center justify-center gap-1">
+        <div class="mx-3 my-1 p-3 bg-slate-900/70 border border-slate-800 rounded-2xl flex-1 flex flex-col min-h-[110px]">
+            <h3 class="font-black text-white text-[10px] tracking-wider uppercase mb-1.5 text-center border-b border-slate-800 pb-1 flex items-center justify-center gap-1">
                 📊 SEPARATE INDIVIDUAL ATHLETE TOTALS
             </h3>
-            <div id="athlete-board" class="overflow-y-auto space-y-1.5 flex-1 max-h-[160px] pr-1">
-                <!-- Calculated and rendered separately via javascript -->
+            <div id="athlete-board" class="overflow-y-auto space-y-1 flex-1 max-h-[130px] pr-1">
+                <!-- Javascript Injection -->
             </div>
         </div>
 
         <!-- History Stream Feed -->
         <div class="p-3 bg-slate-950 border-t border-slate-800 rounded-t-2xl shadow-2xl">
-            <h3 class="font-black text-orange-500 text-[10px] tracking-wider uppercase mb-2 flex items-center gap-1.5">
+            <h3 class="font-black text-orange-500 text-[10px] tracking-wider uppercase mb-1.5 flex items-center gap-1.5">
                 <span class="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span> HISTÓRICO RECENTE
             </h3>
-            <div id="log-list" class="space-y-1.5 max-h-24 overflow-y-auto pr-1"></div>
+            <div id="log-list" class="space-y-1.5 max-h-20 overflow-y-auto pr-1"></div>
         </div>
     </div>
 
@@ -149,7 +182,7 @@
                 <div class="text-xl font-black bg-slate-950 px-3 py-1 rounded-lg text-orange-500 min-w-[50px] text-center" id="jersey-display">-</div>
             </div>
 
-            <!-- Virtual Keyboard -->
+            <!-- Virtual Keyboard Layout -->
             <div class="grid grid-cols-3 gap-2">
                 <button onclick="pressKey('1')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">1</button>
                 <button onclick="pressKey('2')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">2</button>
@@ -171,7 +204,7 @@
         </div>
     </div>
 
-    <!-- REFINED CODE LOGIC ENGINE -->
+    <!-- CODE LOGIC ENGINE -->
     <script>
         let stats = JSON.parse(localStorage.getItem('hoops_data_v2')) || [];
         let currentQ = 1;
@@ -198,35 +231,25 @@
                 osc.frequency.exponentialRampToValueAtTime(1200, now + 0.4);
                 gain.gain.setValueAtTime(0.1, now);
                 gain.gain.linearRampToValueAtTime(0, now + 0.4);
-                osc.start(now);
-                osc.stop(now + 0.4);
+                osc.start(now); osc.stop(now + 0.4);
             } else if (type === 'whistle') {
                 const osc2 = audioCtx.createOscillator();
                 const gain2 = audioCtx.createGain();
-                osc2.connect(gain2);
-                gain2.connect(audioCtx.destination);
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(1100, now);
-                osc2.type = 'sine';
-                osc2.frequency.setValueAtTime(1140, now);
-                gain.gain.setValueAtTime(0.08, now);
-                gain.gain.linearRampToValueAtTime(0, now + 0.22);
-                gain2.gain.setValueAtTime(0.08, now);
-                gain2.gain.linearRampToValueAtTime(0, now + 0.22);
+                osc2.connect(gain2); gain2.connect(audioCtx.destination);
+                osc.type = 'triangle'; osc.frequency.setValueAtTime(1100, now);
+                osc2.type = 'sine'; osc2.frequency.setValueAtTime(1140, now);
+                gain.gain.setValueAtTime(0.08, now); gain.gain.linearRampToValueAtTime(0, now + 0.22);
+                gain2.gain.setValueAtTime(0.08, now); gain2.gain.linearRampToValueAtTime(0, now + 0.22);
                 osc.start(now); osc2.start(now);
                 osc.stop(now + 0.22); osc2.stop(now + 0.22);
             } else if (type === 'delete') {
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(350, now);
+                osc.type = 'sawtooth'; osc.frequency.setValueAtTime(350, now);
                 osc.frequency.linearRampToValueAtTime(80, now + 0.15);
-                gain.gain.setValueAtTime(0.1, now);
-                gain.gain.linearRampToValueAtTime(0, now + 0.15);
+                gain.gain.setValueAtTime(0.1, now); gain.gain.linearRampToValueAtTime(0, now + 0.15);
                 osc.start(now); osc.stop(now + 0.15);
             } else if (type === 'tap') {
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(800, now);
-                gain.gain.setValueAtTime(0.05, now);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+                osc.type = 'sine'; osc.frequency.setValueAtTime(800, now);
+                gain.gain.setValueAtTime(0.05, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
                 osc.start(now); osc.stop(now + 0.03);
             }
         }
@@ -241,6 +264,10 @@
                 window.speechSynthesis.speak(utterance);
             }
         }
+
+        document.getElementById('security-code').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') checkAccess();
+        });
 
         function checkAccess() {
             const inputCode = document.getElementById('security-code').value.trim();
@@ -341,22 +368,35 @@
         }
 
         function render() {
-            // 1. Calculate Team Totals
+            // 1. Reset Global Game Level Counts
             const teamTotals = {
                 Home: { 'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0 },
                 Away: { 'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0 }
             };
 
-            // 2. Separate Data Structure for Individual Athlete Performance Calculations
+            // 2. Reset Quarter Level Counter Maps
+            const quarterTotals = {
+                1: { Home: 0, Away: 0 },
+                2: { Home: 0, Away: 0 },
+                3: { Home: 0, Away: 0 },
+                4: { Home: 0, Away: 0 }
+            };
+
+            // 3. Reset Athlete Map
             const athleteMap = {};
 
             stats.forEach(s => {
-                // Sum team level statistics
+                // Global Totals calculation
                 if (teamTotals[s.team] && teamTotals[s.team][s.type] !== undefined) {
                     teamTotals[s.team][s.type]++;
                 }
 
-                // Process unique athlete calculations
+                // Quarter specific math calculation (counts overall action occurrences per Q)
+                if (quarterTotals[s.q] && quarterTotals[s.q][s.team] !== undefined) {
+                    quarterTotals[s.q][s.team]++;
+                }
+
+                // Individual Player calculation tracking
                 const playerKey = `${s.team}_${s.player}`;
                 if (!athleteMap[playerKey]) {
                     athleteMap[playerKey] = {
@@ -371,7 +411,7 @@
                 athleteMap[playerKey][s.type]++;
             });
 
-            // Update Global UI Dashboard Numbers
+            // Update Top Global Scoreboard Numbers 
             document.getElementById('total-home-falta').innerText = teamTotals.Home['FALTA'];
             document.getElementById('total-home-abafos').innerText = teamTotals.Home['ABAFOS'];
             document.getElementById('total-home-ro').innerText = teamTotals.Home['RESALTO OFENSIVO'];
@@ -382,7 +422,13 @@
             document.getElementById('total-away-ro').innerText = teamTotals.Away['RESALTO OFENSIVO'];
             document.getElementById('total-away-rd').innerText = teamTotals.Away['RESALTO DEFENSIVO'];
 
-            // 3. Render Separate Individual Athlete Performance Board
+            // Update Separate Quarter Totals Module Text Fields
+            for (let q = 1; q <= 4; q++) {
+                document.getElementById(`q${q}-home-total`).innerText = quarterTotals[q].Home;
+                document.getElementById(`q${q}-away-total`).innerText = quarterTotals[q].Away;
+            }
+
+            // Render Separate Athlete Center Cards
             const athleteBoard = document.getElementById('athlete-board');
             const sortedAthletes = Object.values(athleteMap).sort((a, b) => {
                 if (a.team !== b.team) return a.team === 'Home' ? -1 : 1;
@@ -408,7 +454,7 @@
                 `).join('');
             }
 
-            // 4. Render Simple Action History Stream Feed Log
+            // Render History Log Feed
             const list = document.getElementById('log-list');
             if (stats.length === 0) {
                 list.innerHTML = `<p class="text-center text-gray-600 py-3 text-[11px] italic">Nenhum registo efetuado.</p>`;
