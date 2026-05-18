@@ -66,108 +66,112 @@
             </div>
         </div>
 
-        <!-- 4-METRIC GLOBAL SCOREBOARD (GAME TOTALS) -->
+        <!-- GLOBAL SCOREBOARD (GAME TOTALS) -->
         <div class="p-3 bg-slate-950/80 border-b border-slate-800 grid grid-cols-2 gap-3 text-center">
             <!-- Casa Totals -->
             <div class="bg-blue-950/20 border border-blue-900/50 rounded-xl p-2">
-                <h4 class="text-[10px] font-black text-blue-400 tracking-wider mb-1">TOTAIS GAME CASA</h4>
+                <h4 class="text-[10px] font-black text-blue-400 tracking-wider mb-1">TOTAIS JOGO CASA</h4>
                 <div class="grid grid-cols-4 gap-0.5">
-                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">FAL</p><p id="total-home-falta" class="text-sm font-black text-white">0</p></div>
-                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">ABA</p><p id="total-home-abafos" class="text-sm font-black text-white">0</p></div>
-                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">R.OF</p><p id="total-home-ro" class="text-sm font-black text-white">0</p></div>
-                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">R.DF</p><p id="total-home-rd" class="text-sm font-black text-white">0</p></div>
+                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">FAL</p><p id="total-home-falta" class="text-xs font-black text-white">0</p></div>
+                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">ABA</p><p id="total-home-abafos" class="text-xs font-black text-white">0</p></div>
+                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">R.OF</p><p id="total-home-ro" class="text-xs font-black text-white">0</p></div>
+                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">R.DF</p><p id="total-home-rd" class="text-xs font-black text-white">0</p></div>
                 </div>
             </div>
             <!-- Fora Totals -->
             <div class="bg-amber-950/20 border border-amber-900/40 rounded-xl p-2">
-                <h4 class="text-[10px] font-black text-amber-400 tracking-wider mb-1">TOTAIS GAME FORA</h4>
+                <h4 class="text-[10px] font-black text-amber-400 tracking-wider mb-1">TOTAIS JOGO FORA</h4>
                 <div class="grid grid-cols-4 gap-0.5">
-                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">FAL</p><p id="total-away-falta" class="text-sm font-black text-white">0</p></div>
-                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">ABA</p><p id="total-away-abafos" class="text-sm font-black text-white">0</p></div>
-                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">R.OF</p><p id="total-away-ro" class="text-sm font-black text-white">0</p></div>
-                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">R.DF</p><p id="total-away-rd" class="text-sm font-black text-white">0</p></div>
+                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">FAL</p><p id="total-away-falta" class="text-xs font-black text-white">0</p></div>
+                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">ABA</p><p id="total-away-abafos" class="text-xs font-black text-white">0</p></div>
+                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">R.OF</p><p id="total-away-ro" class="text-xs font-black text-white">0</p></div>
+                    <div class="bg-slate-900/80 p-1 rounded"><p class="text-[8px] text-gray-500 font-bold">R.DF</p><p id="total-away-rd" class="text-xs font-black text-white">0</p></div>
                 </div>
             </div>
         </div>
 
-        <!-- Quarters Navigation Selector -->
-        <div class="grid grid-cols-4 gap-1.5 bg-black/40 p-2.5 border-b border-slate-900">
-            <button onclick="setQ(1)" id="q1" class="py-1.5 rounded-xl bg-orange-500 font-black text-black text-xs">Q1</button>
-            <button onclick="setQ(2)" id="q2" class="py-1.5 rounded-xl bg-slate-800 font-black text-gray-400 text-xs">Q2</button>
-            <button onclick="setQ(3)" id="q3" class="py-1.5 rounded-xl bg-slate-800 font-black text-gray-400 text-xs">Q3</button>
-            <button onclick="setQ(4)" id="q4" class="py-1.5 rounded-xl bg-slate-800 font-black text-gray-400 text-xs">Q4</button>
+        <!-- Quarters Navigation Input Selector -->
+        <div class="grid grid-cols-4 gap-1.5 bg-black/40 p-2 border-b border-slate-900">
+            <button onclick="setQ(1)" id="q1" class="py-1 rounded-xl bg-orange-500 font-black text-black text-xs">Q1</button>
+            <button onclick="setQ(2)" id="q2" class="py-1 rounded-xl bg-slate-800 font-black text-gray-400 text-xs">Q2</button>
+            <button onclick="setQ(3)" id="q3" class="py-1 rounded-xl bg-slate-800 font-black text-gray-400 text-xs">Q3</button>
+            <button onclick="setQ(4)" id="q4" class="py-1 rounded-xl bg-slate-800 font-black text-gray-400 text-xs">Q4</button>
         </div>
 
-        <!-- Logging Matrix Grid -->
+        <!-- Action Logging Buttons -->
         <div class="grid grid-cols-2 gap-3 p-3 items-start">
-            <!-- Home Buttons -->
-            <div class="space-y-2">
-                <h2 class="text-center font-black tracking-wider text-blue-400 text-[10px] uppercase">CASA</h2>
-                <button onclick="openKeypad('Home', 'FALTA')" class="active:scale-95 w-full py-3.5 bg-rose-950/30 border border-rose-600/70 rounded-xl font-black text-rose-200 text-xs">FALTA</button>
-                <button onclick="openKeypad('Home', 'ABAFOS')" class="active:scale-95 w-full py-3.5 bg-blue-950/30 border border-blue-500/70 rounded-xl font-black text-blue-200 text-xs">ABAFOS</button>
-                <button onclick="openKeypad('Home', 'RESALTO OFENSIVO')" class="active:scale-95 w-full py-3.5 bg-blue-950/30 border border-blue-500/70 rounded-xl font-black text-blue-200 text-[11px]">RESALTO OF.</button>
-                <button onclick="openKeypad('Home', 'RESALTO DEFENSIVO')" class="active:scale-95 w-full py-3.5 bg-blue-950/30 border border-blue-500/70 rounded-xl font-black text-blue-200 text-[11px]">RESALTO DEF.</button>
+            <div class="space-y-1.5">
+                <h2 class="text-center font-black tracking-wider text-blue-400 text-[9px] uppercase">CASA</h2>
+                <button onclick="openKeypad('Home', 'FALTA')" class="active:scale-95 w-full py-2.5 bg-rose-950/30 border border-rose-600/70 rounded-xl font-black text-rose-200 text-xs">FALTA</button>
+                <button onclick="openKeypad('Home', 'ABAFOS')" class="active:scale-95 w-full py-2.5 bg-blue-950/30 border border-blue-500/70 rounded-xl font-black text-blue-200 text-xs">ABAFOS</button>
+                <button onclick="openKeypad('Home', 'RESALTO OFENSIVO')" class="active:scale-95 w-full py-2.5 bg-blue-950/30 border border-blue-500/70 rounded-xl font-black text-blue-200 text-[11px]">RESALTO OF.</button>
+                <button onclick="openKeypad('Home', 'RESALTO DEFENSIVO')" class="active:scale-95 w-full py-2.5 bg-blue-950/30 border border-blue-500/70 rounded-xl font-black text-blue-200 text-[11px]">RESALTO DEF.</button>
             </div>
-
-            <!-- Away Buttons -->
-            <div class="space-y-2">
-                <h2 class="text-center font-black tracking-wider text-amber-400 text-[10px] uppercase">FORA</h2>
-                <button onclick="openKeypad('Away', 'FALTA')" class="active:scale-95 w-full py-3.5 bg-rose-950/30 border border-rose-600/70 rounded-xl font-black text-rose-200 text-xs">FALTA</button>
-                <button onclick="openKeypad('Away', 'ABAFOS')" class="active:scale-95 w-full py-3.5 bg-slate-800/60 border border-slate-600 rounded-xl font-black text-slate-300 text-xs">ABAFOS</button>
-                <button onclick="openKeypad('Away', 'RESALTO OFENSIVO')" class="active:scale-95 w-full py-3.5 bg-slate-800/60 border border-slate-600 rounded-xl font-black text-slate-300 text-[11px]">RESALTO OF.</button>
-                <button onclick="openKeypad('Away', 'RESALTO DEFENSIVO')" class="active:scale-95 w-full py-3.5 bg-slate-800/60 border border-slate-600 rounded-xl font-black text-slate-300 text-[11px]">RESALTO DEF.</button>
+            <div class="space-y-1.5">
+                <h2 class="text-center font-black tracking-wider text-amber-400 text-[9px] uppercase">FORA</h2>
+                <button onclick="openKeypad('Away', 'FALTA')" class="active:scale-95 w-full py-2.5 bg-rose-950/30 border border-rose-600/70 rounded-xl font-black text-rose-200 text-xs">FALTA</button>
+                <button onclick="openKeypad('Away', 'ABAFOS')" class="active:scale-95 w-full py-2.5 bg-slate-800/60 border border-slate-600 rounded-xl font-black text-slate-300 text-xs">ABAFOS</button>
+                <button onclick="openKeypad('Away', 'RESALTO OFENSIVO')" class="active:scale-95 w-full py-2.5 bg-slate-800/60 border border-slate-600 rounded-xl font-black text-slate-300 text-[11px]">RESALTO OF.</button>
+                <button onclick="openKeypad('Away', 'RESALTO DEFENSIVO')" class="active:scale-95 w-full py-2.5 bg-slate-800/60 border border-slate-600 rounded-xl font-black text-slate-300 text-[11px]">RESALTO DEF.</button>
             </div>
         </div>
 
-        <!-- NEW: SEPARATE TOTALS FOR EACH QUARTER (Q1, Q2, Q3, Q4) -->
-        <div class="mx-3 my-1 p-2 bg-slate-900/90 border border-slate-800 rounded-xl space-y-1">
-            <h3 class="font-black text-orange-400 text-[9px] tracking-wider uppercase text-center border-b border-slate-800 pb-0.5">
-                ⏱️ SEPARATE QUARTER TOTALS (CASA / FORA)
+        <!-- NEWLY OPTIMIZED: SCROLLABLE SEPARATE QUARTERS DISPLAY MATRIX -->
+        <div class="mx-3 my-1 p-2 bg-slate-900/90 border border-slate-800 rounded-xl flex flex-col">
+            <h3 class="font-black text-orange-400 text-[9px] tracking-wider uppercase text-center border-b border-slate-800 pb-1 mb-1">
+                ⏱️ TOTALS SEPARATED BY EACH QUARTER
             </h3>
-            <div class="grid grid-cols-4 gap-1 text-[10px]">
-                <!-- Q1 Box -->
-                <div class="bg-slate-950 p-1.5 rounded border border-slate-800 text-center">
-                    <p class="font-black text-orange-500 border-b border-slate-800 mb-1 text-[9px]">QUARTER 1</p>
-                    <p class="text-blue-400 font-bold">C: <span id="q1-home-total" class="text-white">0</span></p>
-                    <p class="text-amber-400 font-bold">F: <span id="q1-away-total" class="text-white">0</span></p>
+            <!-- Vertically scrollable section for the quarters list layout -->
+            <div class="space-y-1.5 max-h-[140px] overflow-y-auto pr-0.5">
+                <!-- Quarter 1 Breakdown Card -->
+                <div class="bg-slate-950 border border-slate-800 rounded-lg p-1.5">
+                    <p class="text-orange-500 text-[10px] font-black tracking-wide mb-1 border-b border-slate-900 pb-0.5">1ST QUARTER TOTAIS</p>
+                    <div class="grid grid-cols-2 gap-2 text-[9px] font-mono">
+                        <div class="text-blue-400 border-r border-slate-800 pr-1"><b>CASA:</b> FAL:<span id="q1-h-fal" class="text-white font-bold ml-0.5">0</span> | ABA:<span id="q1-h-aba" class="text-white font-bold ml-0.5">0</span> | RO:<span id="q1-h-ro" class="text-white font-bold ml-0.5">0</span> | RD:<span id="q1-h-rd" class="text-white font-bold ml-0.5">0</span></div>
+                        <div class="text-amber-400 pl-1"><b>FORA:</b> FAL:<span id="q1-a-fal" class="text-white font-bold ml-0.5">0</span> | ABA:<span id="q1-a-aba" class="text-white font-bold ml-0.5">0</span> | RO:<span id="q1-a-ro" class="text-white font-bold ml-0.5">0</span> | RD:<span id="q1-a-rd" class="text-white font-bold ml-0.5">0</span></div>
+                    </div>
                 </div>
-                <!-- Q2 Box -->
-                <div class="bg-slate-950 p-1.5 rounded border border-slate-800 text-center">
-                    <p class="font-black text-orange-500 border-b border-slate-800 mb-1 text-[9px]">QUARTER 2</p>
-                    <p class="text-blue-400 font-bold">C: <span id="q2-home-total" class="text-white">0</span></p>
-                    <p class="text-amber-400 font-bold">F: <span id="q2-away-total" class="text-white">0</span></p>
+                <!-- Quarter 2 Breakdown Card -->
+                <div class="bg-slate-950 border border-slate-800 rounded-lg p-1.5">
+                    <p class="text-orange-500 text-[10px] font-black tracking-wide mb-1 border-b border-slate-900 pb-0.5">2ND QUARTER TOTAIS</p>
+                    <div class="grid grid-cols-2 gap-2 text-[9px] font-mono">
+                        <div class="text-blue-400 border-r border-slate-800 pr-1"><b>CASA:</b> FAL:<span id="q2-h-fal" class="text-white font-bold ml-0.5">0</span> | ABA:<span id="q2-h-aba" class="text-white font-bold ml-0.5">0</span> | RO:<span id="q2-h-ro" class="text-white font-bold ml-0.5">0</span> | RD:<span id="q2-h-rd" class="text-white font-bold ml-0.5">0</span></div>
+                        <div class="text-amber-400 pl-1"><b>FORA:</b> FAL:<span id="q2-a-fal" class="text-white font-bold ml-0.5">0</span> | ABA:<span id="q2-a-aba" class="text-white font-bold ml-0.5">0</span> | RO:<span id="q2-a-ro" class="text-white font-bold ml-0.5">0</span> | RD:<span id="q2-a-rd" class="text-white font-bold ml-0.5">0</span></div>
+                    </div>
                 </div>
-                <!-- Q3 Box -->
-                <div class="bg-slate-950 p-1.5 rounded border border-slate-800 text-center">
-                    <p class="font-black text-orange-500 border-b border-slate-800 mb-1 text-[9px]">QUARTER 3</p>
-                    <p class="text-blue-400 font-bold">C: <span id="q3-home-total" class="text-white">0</span></p>
-                    <p class="text-amber-400 font-bold">F: <span id="q3-away-total" class="text-white">0</span></p>
+                <!-- Quarter 3 Breakdown Card -->
+                <div class="bg-slate-950 border border-slate-800 rounded-lg p-1.5">
+                    <p class="text-orange-500 text-[10px] font-black tracking-wide mb-1 border-b border-slate-900 pb-0.5">3RD QUARTER TOTAIS</p>
+                    <div class="grid grid-cols-2 gap-2 text-[9px] font-mono">
+                        <div class="text-blue-400 border-r border-slate-800 pr-1"><b>CASA:</b> FAL:<span id="q3-h-fal" class="text-white font-bold ml-0.5">0</span> | ABA:<span id="q3-h-aba" class="text-white font-bold ml-0.5">0</span> | RO:<span id="q3-h-ro" class="text-white font-bold ml-0.5">0</span> | RD:<span id="q3-h-rd" class="text-white font-bold ml-0.5">0</span></div>
+                        <div class="text-amber-400 pl-1"><b>FORA:</b> FAL:<span id="q3-a-fal" class="text-white font-bold ml-0.5">0</span> | ABA:<span id="q3-a-aba" class="text-white font-bold ml-0.5">0</span> | RO:<span id="q3-a-ro" class="text-white font-bold ml-0.5">0</span> | RD:<span id="q3-a-rd" class="text-white font-bold ml-0.5">0</span></div>
+                    </div>
                 </div>
-                <!-- Q4 Box -->
-                <div class="bg-slate-950 p-1.5 rounded border border-slate-800 text-center">
-                    <p class="font-black text-orange-500 border-b border-slate-800 mb-1 text-[9px]">QUARTER 4</p>
-                    <p class="text-blue-400 font-bold">C: <span id="q4-home-total" class="text-white">0</span></p>
-                    <p class="text-amber-400 font-bold">F: <span id="q4-away-total" class="text-white">0</span></p>
+                <!-- Quarter 4 Breakdown Card -->
+                <div class="bg-slate-950 border border-slate-800 rounded-lg p-1.5">
+                    <p class="text-orange-500 text-[10px] font-black tracking-wide mb-1 border-b border-slate-900 pb-0.5">4TH QUARTER TOTAIS</p>
+                    <div class="grid grid-cols-2 gap-2 text-[9px] font-mono">
+                        <div class="text-blue-400 border-r border-slate-800 pr-1"><b>CASA:</b> FAL:<span id="q4-h-fal" class="text-white font-bold ml-0.5">0</span> | ABA:<span id="q4-h-aba" class="text-white font-bold ml-0.5">0</span> | RO:<span id="q4-h-ro" class="text-white font-bold ml-0.5">0</span> | RD:<span id="q4-h-rd" class="text-white font-bold ml-0.5">0</span></div>
+                        <div class="text-amber-400 pl-1"><b>FORA:</b> FAL:<span id="q4-a-fal" class="text-white font-bold ml-0.5">0</span> | ABA:<span id="q4-a-aba" class="text-white font-bold ml-0.5">0</span> | RO:<span id="q4-a-ro" class="text-white font-bold ml-0.5">0</span> | RD:<span id="q4-a-rd" class="text-white font-bold ml-0.5">0</span></div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- DEDICATED INDIVIDUAL ATHLETE TOTALS BOARD -->
-        <div class="mx-3 my-1 p-3 bg-slate-900/70 border border-slate-800 rounded-2xl flex-1 flex flex-col min-h-[110px]">
-            <h3 class="font-black text-white text-[10px] tracking-wider uppercase mb-1.5 text-center border-b border-slate-800 pb-1 flex items-center justify-center gap-1">
+        <!-- INDIVIDUAL ATHLETE TOTALS BOARD -->
+        <div class="mx-3 my-1 p-2 bg-slate-900/70 border border-slate-800 rounded-xl flex-1 flex flex-col min-h-[90px]">
+            <h3 class="font-black text-white text-[9px] tracking-wider uppercase mb-1 text-center border-b border-slate-800 pb-1 flex items-center justify-center gap-1">
                 📊 SEPARATE INDIVIDUAL ATHLETE TOTALS
             </h3>
-            <div id="athlete-board" class="overflow-y-auto space-y-1 flex-1 max-h-[130px] pr-1">
-                <!-- Javascript Injection -->
-            </div>
+            <div id="athlete-board" class="overflow-y-auto space-y-1 flex-1 max-h-[100px] pr-1"></div>
         </div>
 
-        <!-- History Stream Feed -->
+        <!-- History Log Feed -->
         <div class="p-3 bg-slate-950 border-t border-slate-800 rounded-t-2xl shadow-2xl">
-            <h3 class="font-black text-orange-500 text-[10px] tracking-wider uppercase mb-1.5 flex items-center gap-1.5">
+            <h3 class="font-black text-orange-500 text-[9px] tracking-wider uppercase mb-1 flex items-center gap-1.5">
                 <span class="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span> HISTÓRICO RECENTE
             </h3>
-            <div id="log-list" class="space-y-1.5 max-h-20 overflow-y-auto pr-1"></div>
+            <div id="log-list" class="space-y-1 max-h-14 overflow-y-auto pr-1"></div>
         </div>
     </div>
 
@@ -182,19 +186,19 @@
                 <div class="text-xl font-black bg-slate-950 px-3 py-1 rounded-lg text-orange-500 min-w-[50px] text-center" id="jersey-display">-</div>
             </div>
 
-            <!-- Virtual Keyboard Layout -->
+            <!-- Keyboard Layout -->
             <div class="grid grid-cols-3 gap-2">
-                <button onclick="pressKey('1')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">1</button>
-                <button onclick="pressKey('2')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">2</button>
-                <button onclick="pressKey('3')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">3</button>
-                <button onclick="pressKey('4')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">4</button>
-                <button onclick="pressKey('5')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">5</button>
-                <button onclick="pressKey('6')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">6</button>
-                <button onclick="pressKey('7')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">7</button>
-                <button onclick="pressKey('8')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">8</button>
-                <button onclick="pressKey('9')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">9</button>
+                <button onclick="pressKey('1')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl">1</button>
+                <button onclick="pressKey('2')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl">2</button>
+                <button onclick="pressKey('3')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl">3</button>
+                <button onclick="pressKey('4')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl">4</button>
+                <button onclick="pressKey('5')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl">5</button>
+                <button onclick="pressKey('6')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl">6</button>
+                <button onclick="pressKey('7')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl">7</button>
+                <button onclick="pressKey('8')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl">8</button>
+                <button onclick="pressKey('9')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl">9</button>
                 <button onclick="pressKey('CLEAR')" class="bg-rose-950 text-rose-300 font-bold text-xs py-3 rounded-xl uppercase">Limpar</button>
-                <button onclick="pressKey('0')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl shadow">0</button>
+                <button onclick="pressKey('0')" class="bg-slate-800 active:bg-slate-700 text-white font-black text-xl py-3 rounded-xl">0</button>
                 <button onclick="closeKeypad()" class="bg-slate-700 text-slate-200 font-bold text-xs py-3 rounded-xl uppercase">Sair</button>
             </div>
 
@@ -216,21 +220,16 @@
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function playSound(type) {
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
+            osc.connect(gain); gain.connect(audioCtx.destination);
             const now = audioCtx.currentTime;
 
             if (type === 'access') {
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(300, now);
+                osc.type = 'sine'; osc.frequency.setValueAtTime(300, now);
                 osc.frequency.exponentialRampToValueAtTime(1200, now + 0.4);
-                gain.gain.setValueAtTime(0.1, now);
-                gain.gain.linearRampToValueAtTime(0, now + 0.4);
+                gain.gain.setValueAtTime(0.1, now); gain.gain.linearRampToValueAtTime(0, now + 0.4);
                 osc.start(now); osc.stop(now + 0.4);
             } else if (type === 'whistle') {
                 const osc2 = audioCtx.createOscillator();
@@ -260,14 +259,9 @@
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'en-US';
                 utterance.rate = 0.95;
-                utterance.pitch = 1.0;
                 window.speechSynthesis.speak(utterance);
             }
         }
-
-        document.getElementById('security-code').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') checkAccess();
-        });
 
         function checkAccess() {
             const inputCode = document.getElementById('security-code').value.trim();
@@ -318,9 +312,7 @@
             if (key === 'CLEAR') {
                 currentJersey = '';
             } else {
-                if (currentJersey.length < 3) {
-                    currentJersey += key;
-                }
+                if (currentJersey.length < 3) currentJersey += key;
             }
             document.getElementById('jersey-display').innerText = currentJersey || '-';
         }
@@ -368,50 +360,39 @@
         }
 
         function render() {
-            // 1. Reset Global Game Level Counts
             const teamTotals = {
                 Home: { 'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0 },
                 Away: { 'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0 }
             };
 
-            // 2. Reset Quarter Level Counter Maps
-            const quarterTotals = {
-                1: { Home: 0, Away: 0 },
-                2: { Home: 0, Away: 0 },
-                3: { Home: 0, Away: 0 },
-                4: { Home: 0, Away: 0 }
+            const quarterMatrix = {
+                1: { Home: {'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0}, Away: {'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0} },
+                2: { Home: {'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0}, Away: {'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0} },
+                3: { Home: {'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0}, Away: {'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0} },
+                4: { Home: {'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0}, Away: {'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0} }
             };
 
-            // 3. Reset Athlete Map
             const athleteMap = {};
 
             stats.forEach(s => {
-                // Global Totals calculation
                 if (teamTotals[s.team] && teamTotals[s.team][s.type] !== undefined) {
                     teamTotals[s.team][s.type]++;
                 }
 
-                // Quarter specific math calculation (counts overall action occurrences per Q)
-                if (quarterTotals[s.q] && quarterTotals[s.q][s.team] !== undefined) {
-                    quarterTotals[s.q][s.team]++;
+                if (quarterMatrix[s.q] && quarterMatrix[s.q][s.team] && quarterMatrix[s.q][s.team][s.type] !== undefined) {
+                    quarterMatrix[s.q][s.team][s.type]++;
                 }
 
-                // Individual Player calculation tracking
                 const playerKey = `${s.team}_${s.player}`;
                 if (!athleteMap[playerKey]) {
                     athleteMap[playerKey] = {
-                        team: s.team,
-                        jersey: s.player,
-                        'FALTA': 0,
-                        'ABAFOS': 0,
-                        'RESALTO OFENSIVO': 0,
-                        'RESALTO DEFENSIVO': 0
+                        team: s.team, jersey: s.player, 'FALTA': 0, 'ABAFOS': 0, 'RESALTO OFENSIVO': 0, 'RESALTO DEFENSIVO': 0
                     };
                 }
                 athleteMap[playerKey][s.type]++;
             });
 
-            // Update Top Global Scoreboard Numbers 
+            // Update Game Level Numbers 
             document.getElementById('total-home-falta').innerText = teamTotals.Home['FALTA'];
             document.getElementById('total-home-abafos').innerText = teamTotals.Home['ABAFOS'];
             document.getElementById('total-home-ro').innerText = teamTotals.Home['RESALTO OFENSIVO'];
@@ -422,13 +403,20 @@
             document.getElementById('total-away-ro').innerText = teamTotals.Away['RESALTO OFENSIVO'];
             document.getElementById('total-away-rd').innerText = teamTotals.Away['RESALTO DEFENSIVO'];
 
-            // Update Separate Quarter Totals Module Text Fields
+            // Update Quarter Specific Text Fields
             for (let q = 1; q <= 4; q++) {
-                document.getElementById(`q${q}-home-total`).innerText = quarterTotals[q].Home;
-                document.getElementById(`q${q}-away-total`).innerText = quarterTotals[q].Away;
+                document.getElementById(`q${q}-h-fal`).innerText = quarterMatrix[q].Home['FALTA'];
+                document.getElementById(`q${q}-h-aba`).innerText = quarterMatrix[q].Home['ABAFOS'];
+                document.getElementById(`q${q}-h-ro`).innerText = quarterMatrix[q].Home['RESALTO OFENSIVO'];
+                document.getElementById(`q${q}-h-rd`).innerText = quarterMatrix[q].Home['RESALTO DEFENSIVO'];
+
+                document.getElementById(`q${q}-a-fal`).innerText = quarterMatrix[q].Away['FALTA'];
+                document.getElementById(`q${q}-a-aba`).innerText = quarterMatrix[q].Away['ABAFOS'];
+                document.getElementById(`q${q}-a-ro`).innerText = quarterMatrix[q].Away['RESALTO OFENSIVO'];
+                document.getElementById(`q${q}-a-rd`).innerText = quarterMatrix[q].Away['RESALTO DEFENSIVO'];
             }
 
-            // Render Separate Athlete Center Cards
+            // Render Athletes
             const athleteBoard = document.getElementById('athlete-board');
             const sortedAthletes = Object.values(athleteMap).sort((a, b) => {
                 if (a.team !== b.team) return a.team === 'Home' ? -1 : 1;
@@ -436,39 +424,38 @@
             });
 
             if (sortedAthletes.length === 0) {
-                athleteBoard.innerHTML = `<p class="text-center text-gray-600 py-4 text-[11px] italic">Nenhum atleta registado até ao momento.</p>`;
+                athleteBoard.innerHTML = `<p class="text-center text-gray-600 py-4 text-[11px] italic">Nenhum atleta registado.</p>`;
             } else {
                 athleteBoard.innerHTML = sortedAthletes.map(a => `
-                    <div class="flex items-center justify-between p-2 bg-slate-950/80 border rounded-xl ${a.team === 'Home' ? 'border-blue-900/60' : 'border-amber-900/40'}">
-                        <div class="flex items-center gap-2">
+                    <div class="flex items-center justify-between p-1.5 bg-slate-950/80 border rounded-xl ${a.team === 'Home' ? 'border-blue-900/60' : 'border-amber-900/40'}">
+                        <div class="flex items-center gap-1.5">
                             <span class="jersey-badge" style="background:${a.team === 'Home' ? '#60a5fa' : '#f59e0b'}">${a.jersey}</span>
-                            <span class="text-[10px] font-black tracking-wider ${a.team === 'Home' ? 'text-blue-400' : 'text-amber-400'}">${a.team === 'Home' ? 'CASA' : 'FORA'}</span>
+                            <span class="text-[9px] font-black ${a.team === 'Home' ? 'text-blue-400' : 'text-amber-400'}">${a.team === 'Home' ? 'CASA' : 'FORA'}</span>
                         </div>
-                        <div class="flex items-center gap-2 text-[10px] text-right font-mono">
-                            <span class="bg-slate-900 px-1.5 py-0.5 rounded text-rose-300 font-bold"><b class="text-gray-500 font-sans">F:</b>${a['FALTA']}</span>
-                            <span class="bg-slate-900 px-1.5 py-0.5 rounded text-blue-300 font-bold"><b class="text-gray-500 font-sans">A:</b>${a['ABAFOS']}</span>
-                            <span class="bg-slate-900 px-1.5 py-0.5 rounded text-emerald-300 font-bold"><b class="text-gray-500 font-sans">RO:</b>${a['RESALTO OFENSIVO']}</span>
-                            <span class="bg-slate-900 px-1.5 py-0.5 rounded text-cyan-300 font-bold"><b class="text-gray-500 font-sans">RD:</b>${a['RESALTO DEFENSIVO']}</span>
+                        <div class="flex items-center gap-1 text-[9px] font-mono">
+                            <span class="bg-slate-900 px-1 py-0.5 rounded text-rose-300">F:${a['FALTA']}</span>
+                            <span class="bg-slate-900 px-1 py-0.5 rounded text-blue-300">A:${a['ABAFOS']}</span>
+                            <span class="bg-slate-900 px-1 py-0.5 rounded text-emerald-300">RO:${a['RESALTO OFENSIVO']}</span>
+                            <span class="bg-slate-900 px-1 py-0.5 rounded text-cyan-300">RD:${a['RESALTO DEFENSIVO']}</span>
                         </div>
                     </div>
                 `).join('');
             }
 
-            // Render History Log Feed
+            // History Log
             const list = document.getElementById('log-list');
             if (stats.length === 0) {
-                list.innerHTML = `<p class="text-center text-gray-600 py-3 text-[11px] italic">Nenhum registo efetuado.</p>`;
+                list.innerHTML = `<p class="text-center text-gray-600 py-2 text-[11px] italic">Nenhum registo.</p>`;
                 return;
             }
-
             list.innerHTML = stats.map(s => `
-                <div class="flex items-center justify-between bg-slate-950/60 p-2 rounded-xl border-l-4 ${s.team === 'Home' ? 'border-blue-500' : 'border-amber-500'}">
-                    <div class="flex items-center gap-2">
-                        <span class="text-[10px] font-bold text-gray-500 bg-slate-900 px-1 py-0.5 rounded">Q${s.q}</span>
+                <div class="flex items-center justify-between bg-slate-950/60 p-1.5 rounded-xl border-l-4 ${s.team === 'Home' ? 'border-blue-500' : 'border-amber-500'}">
+                    <div class="flex items-center gap-1.5 text-[11px]">
+                        <span class="text-[9px] font-bold text-gray-500 bg-slate-900 px-1 rounded">Q${s.q}</span>
                         <span class="jersey-badge" style="background:${s.team === 'Home' ? '#60a5fa' : '#f59e0b'}">${s.player}</span>
-                        <span class="font-black text-xs text-gray-200">${s.type}</span>
+                        <span class="font-black text-gray-200">${s.type}</span>
                     </div>
-                    <button onclick="deleteItem(${s.id})" class="text-rose-500 hover:text-rose-400 font-bold px-2 py-0.5 text-base active:scale-90">✕</button>
+                    <button onclick="deleteItem(${s.id})" class="text-rose-500 px-2 text-sm">✕</button>
                 </div>
             `).join('');
         }
